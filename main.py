@@ -10,10 +10,24 @@ access_token = os.environ['ACCESS_TOKEN']
 g = Github(base_url="https://api.github.com", login_or_token=access_token, per_page=100)
 
 i = 0
+save = False
 # Then play with your Github objects:
 for issue in g.search_issues('', sort="created", order="desc", label="good-first-issue"):
-    print(issue)
-    print(issue.url)
-    i += 1
-    print(i)
+    if "bot" in issue.user.login:
+        print(issue)
+        print(issue.url)
+        i += 1
+        print(i)
+        print("this is a bot issue")
+        print(issue.user.login)
+        save = False
+        time.sleep(2.0)
+    else:
+        print(issue)
+        print(issue.url)
+        i += 1
+        print(i)
+    if save == True:
+       save = False
+       # TODO: Save issue and url to a document
 
