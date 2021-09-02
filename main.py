@@ -13,6 +13,7 @@ i = 0
 # Then play with your Github objects:
 for issue in g.search_issues('', sort="created", order="desc", label="good-first-issue"):
     print(issue)
+    print(issue.url)
     i += 1
     print(i)
 
